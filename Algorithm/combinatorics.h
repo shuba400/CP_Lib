@@ -19,6 +19,7 @@ struct ModInt {
     friend istream& operator >> (istream &is, ModInt &m) {is >> m.v; m.v = (-MOD < m.v && m.v < MOD) ? m.v : m.v % MOD; if (m.v < 0) m.v += MOD; return is;}
     friend ostream& operator << (ostream &os, const ModInt &m) {return os << m.v;}
 };
+const int mod = 1e9 + 7;
 using mint = ModInt<mod>;
 
 
@@ -29,17 +30,17 @@ const int N = 2e5 + 1;
 mint fact[N],inv_fact[N];
 
 
-void calc(ll n){
+void calc(int n){
     fact[0] = 1;
     inv_fact[0] = 1;
-    rep(i,1,n){
+    for(int i = 1; i < n; i++){
         fact[i] = fact[i - 1]*i;
         inv_fact[i] = inv_fact[i - 1]/i;
     }
 
 }
 
-mint nCr(ll n, ll r){
+mint nCr(int n, int r){
     mint ans = fact[n]*inv_fact[r]*inv_fact[n - r];
     return ans;
 }
